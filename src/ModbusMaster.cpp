@@ -397,6 +397,7 @@ starting at zero.
 The register data in the response buffer is packed as one word per 
 register.
 
+@param u8MBSlave slave address
 @param u16ReadAddress address of the first input register (0x0000..0xFFFF)
 @param u16ReadQty quantity of input registers to read (1..125, enforced by remote device)
 @return 0 on success; exception number on failure
@@ -421,6 +422,7 @@ constant in the state field. A non-zero value requests the output to be
 ON and a value of 0 requests it to be OFF. The request specifies the 
 address of the coil to be forced. Coils are addressed starting at zero.
 
+@param u8MBSlave slave address
 @param u16WriteAddress address of the coil (0x0000..0xFFFF)
 @param u8State 0=OFF, non-zero=ON (0x00..0xFF)
 @return 0 on success; exception number on failure
@@ -442,6 +444,7 @@ This function code is used to write a single holding register in a
 remote device. The request specifies the address of the register to be 
 written. Registers are addressed starting at zero.
 
+@param u8MBSlave slave address
 @param u16WriteAddress address of the holding register (0x0000..0xFFFF)
 @param u16WriteValue value to be written to holding register (0x0000..0xFFFF)
 @return 0 on success; exception number on failure
@@ -469,6 +472,7 @@ The requested ON/OFF states are specified by contents of the transmit
 buffer. A logical '1' in a bit position of the buffer requests the 
 corresponding output to be ON. A logical '0' requests it to be OFF.
 
+@param u8MBSlave slave address
 @param u16WriteAddress address of the first coil (0x0000..0xFFFF)
 @param u16BitQty quantity of coils to write (1..2000, enforced by remote device)
 @return 0 on success; exception number on failure
@@ -498,6 +502,7 @@ to 123 registers) in a remote device.
 The requested written values are specified in the transmit buffer. Data 
 is packed as one word per register.
 
+@param u8MBSlave slave address
 @param u16WriteAddress address of the holding register (0x0000..0xFFFF)
 @param u16WriteQty quantity of holding registers to write (1..123, enforced by remote device)
 @return 0 on success; exception number on failure
