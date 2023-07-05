@@ -318,8 +318,9 @@ order end of the word).
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t ModbusMaster::readCoils(uint16_t u16ReadAddress, uint16_t u16BitQty)
+uint8_t ModbusMaster::readCoils(uint8_t u8MBSlave, uint16_t u16ReadAddress, uint16_t u16BitQty)
 {
+  _u8MBSlave=u8MBSlave;
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16BitQty;
   return ModbusMasterTransaction(ku8MBReadCoils);
@@ -349,9 +350,10 @@ order end of the word).
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t ModbusMaster::readDiscreteInputs(uint16_t u16ReadAddress,
+uint8_t ModbusMaster::readDiscreteInputs(uint8_t u8MBSlave, uint16_t u16ReadAddress,
   uint16_t u16BitQty)
 {
+  _u8MBSlave=u8MBSlave;
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16BitQty;
   return ModbusMasterTransaction(ku8MBReadDiscreteInputs);
@@ -374,9 +376,10 @@ register.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t ModbusMaster::readHoldingRegisters(uint16_t u16ReadAddress,
+uint8_t ModbusMaster::readHoldingRegisters(uint8_t u8MBSlave, uint16_t u16ReadAddress,
   uint16_t u16ReadQty)
 {
+  _u8MBSlave=u8MBSlave;
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16ReadQty;
   return ModbusMasterTransaction(ku8MBReadHoldingRegisters);
@@ -399,9 +402,10 @@ register.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t ModbusMaster::readInputRegisters(uint16_t u16ReadAddress,
+uint8_t ModbusMaster::readInputRegisters(uint8_t u8MBSlave, uint16_t u16ReadAddress,
   uint8_t u16ReadQty)
 {
+  _u8MBSlave=u8MBSlave;
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16ReadQty;
   return ModbusMasterTransaction(ku8MBReadInputRegisters);
@@ -422,8 +426,9 @@ address of the coil to be forced. Coils are addressed starting at zero.
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t ModbusMaster::writeSingleCoil(uint16_t u16WriteAddress, uint8_t u8State)
+uint8_t ModbusMaster::writeSingleCoil(uint8_t u8MBSlave, uint16_t u16WriteAddress, uint8_t u8State)
 {
+  _u8MBSlave=u8MBSlave;
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = (u8State ? 0xFF00 : 0x0000);
   return ModbusMasterTransaction(ku8MBWriteSingleCoil);
@@ -442,9 +447,10 @@ written. Registers are addressed starting at zero.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t ModbusMaster::writeSingleRegister(uint16_t u16WriteAddress,
+uint8_t ModbusMaster::writeSingleRegister(uint8_t u8MBSlave, uint16_t u16WriteAddress,
   uint16_t u16WriteValue)
 {
+  _u8MBSlave=u8MBSlave;
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = 0;
   _u16TransmitBuffer[0] = u16WriteValue;
@@ -468,9 +474,10 @@ corresponding output to be ON. A logical '0' requests it to be OFF.
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t ModbusMaster::writeMultipleCoils(uint16_t u16WriteAddress,
+uint8_t ModbusMaster::writeMultipleCoils(uint8_t u8MBSlave, uint16_t u16WriteAddress,
   uint16_t u16BitQty)
 {
+  _u8MBSlave=u8MBSlave;
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = u16BitQty;
   return ModbusMasterTransaction(ku8MBWriteMultipleCoils);
@@ -496,9 +503,10 @@ is packed as one word per register.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t ModbusMaster::writeMultipleRegisters(uint16_t u16WriteAddress,
+uint8_t ModbusMaster::writeMultipleRegisters(uint8_t u8MBSlave, uint16_t u16WriteAddress,
   uint16_t u16WriteQty)
 {
+  _u8MBSlave=u8MBSlave;
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = u16WriteQty;
   return ModbusMasterTransaction(ku8MBWriteMultipleRegisters);

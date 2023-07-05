@@ -203,15 +203,15 @@ class ModbusMaster
     uint16_t receive(void);
     
     
-    uint8_t  readCoils(uint16_t, uint16_t);
-    uint8_t  readDiscreteInputs(uint16_t, uint16_t);
-    uint8_t  readHoldingRegisters(uint16_t, uint16_t);
-    uint8_t  readInputRegisters(uint16_t, uint8_t);
-    uint8_t  writeSingleCoil(uint16_t, uint8_t);
-    uint8_t  writeSingleRegister(uint16_t, uint16_t);
-    uint8_t  writeMultipleCoils(uint16_t, uint16_t);
+    uint8_t  readCoils(uint8_t, uint16_t, uint16_t);
+    uint8_t  readDiscreteInputs(uint8_t, uint16_t, uint16_t);
+    uint8_t  readHoldingRegisters(uint8_t, uint16_t, uint16_t);
+    uint8_t  readInputRegisters(uint8_t, uint16_t, uint8_t);
+    uint8_t  writeSingleCoil(uint8_t, uint16_t, uint8_t);
+    uint8_t  writeSingleRegister(uint8_t, uint16_t, uint16_t);
+    uint8_t  writeMultipleCoils(uint8_t, uint16_t, uint16_t);
     uint8_t  writeMultipleCoils();
-    uint8_t  writeMultipleRegisters(uint16_t, uint16_t);
+    uint8_t  writeMultipleRegisters(uint8_t, uint16_t, uint16_t);
     uint8_t  writeMultipleRegisters();
     uint8_t  maskWriteRegister(uint16_t, uint16_t, uint16_t);
     uint8_t  readWriteMultipleRegisters(uint16_t, uint16_t, uint16_t, uint16_t);
@@ -220,7 +220,7 @@ class ModbusMaster
   private:
     Stream* _serial;                                             ///< reference to serial port object
     uint8_t  _u8MBSlave;                                         ///< Modbus slave (1..255) initialized in begin()
-    static const uint8_t ku8MaxBufferSize                = 64;   ///< size of response/transmit buffers    
+    static const uint8_t ku8MaxBufferSize                = 128;   ///< size of response/transmit buffers    
     uint16_t _u16ReadAddress;                                    ///< slave register from which to read
     uint16_t _u16ReadQty;                                        ///< quantity of words to read
     uint16_t _u16ResponseBuffer[ku8MaxBufferSize];               ///< buffer to store Modbus slave response; read via GetResponseBuffer()
